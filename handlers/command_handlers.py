@@ -39,11 +39,11 @@ async def com_help(message: Message):
     await message.answer(
         text='Привет! Этот бот совмещает с себе удобство _Telegram_ и мощь *ChatGPT*\n\n'
              '*Полезные команды и ссылки:*\n'
-            '1. /start — главное меню бота\n'
-            '2. /random - узнать рандомный факт · 🧠\n'
-            '3. /gpt - Задать вопрос ChatGPT · 🤖\n'
-            '4. /talk - поговорить с известной личностью · 👤\n'
-            '5. /quiz - проверить свои знания ❓',
+             '1. /start — главное меню бота\n'
+             '2. /random - узнать рандомный факт · 🧠\n'
+             '3. /gpt - Задать вопрос ChatGPT · 🤖\n'
+             '4. /talk - поговорить с известной личностью · 👤\n'
+             '5. /quiz - проверить свои знания ❓',
         reply_markup=kb_back(),
     )
 
@@ -51,8 +51,6 @@ async def com_help(message: Message):
 @command_router.message(Command('gpt'))
 async def ai_gpt_command(message: Message, state: FSMContext):
     photo_file = FSInputFile(path=os.path.join('images', 'gpt.jpg'))
-    # for item in dict(completion).items():
-    #     print(item)
     await message.answer_photo(
         photo=photo_file,
         caption='Напишите запрос к ChatGPT',

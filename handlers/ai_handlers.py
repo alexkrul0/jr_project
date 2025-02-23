@@ -31,9 +31,6 @@ async def ai_random_fact(message: Message):
     ]
     caption = await ai_client.text_request(request_message, 'random.txt')
     photo_file = FSInputFile(path=os.path.join('images', 'random.jpg'))
-
-    # for item in dict(completion).items():
-    #     print(item)
     await message.answer_photo(
         photo=photo_file,
         caption=caption,
@@ -57,8 +54,6 @@ async def ai_gpt_request(message: Message, state: FSMContext):
         ]
         photo_file = FSInputFile(path=os.path.join('images', 'gpt.jpg'))
         caption = await ai_client.text_request(message_list, 'gpt.txt')
-        # for item in dict(completion).items():
-        #     print(item)
         await message.answer_photo(
             photo=photo_file,
             caption=caption,
@@ -99,7 +94,6 @@ async def celebrity_answer(message: Message, state: FSMContext):
 async def quiz_get_question(callback: CallbackQuery, callback_data: QuizData, state: FSMContext):
     data = await state.get_data()
     data['score'] = data.get('score', 0)
-    # await state.update_data(score=0)
     if callback_data.subject != 'quiz_more':
         data['type'] = callback_data.subject
     message_list = [
@@ -116,7 +110,6 @@ async def quiz_get_question(callback: CallbackQuery, callback_data: QuizData, st
         chat_id=callback.from_user.id,
         photo=photo_file,
         caption=ai_question,
-        # reply_markup=ikb_select_subject_quiz(),
     )
     await state.set_state(QuizGame.wait_for_answer)
 
@@ -141,8 +134,6 @@ async def quiz_correct_answer(message: Message, state: FSMContext):
     if correct_answer == 'Правильно!':
         data['score'] += 1
         await state.update_data(score=data['score'])
-    # for item in dict(completion).items():
-    #     print(item)
     await message.answer_photo(
         photo=photo_file,
         caption=ai_answer + f'\nВаш текущий счет: {data['score']}',

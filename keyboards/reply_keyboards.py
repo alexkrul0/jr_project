@@ -1,5 +1,6 @@
 from aiogram.utils.keyboard import ReplyKeyboardBuilder
 
+
 def kb_start():
     keyboard = ReplyKeyboardBuilder()
     keyboard.button(
@@ -37,7 +38,6 @@ def kb_random_facts():
     )
 
 
-
 def kb_back():
     keyboard = ReplyKeyboardBuilder()
     keyboard.button(
@@ -56,5 +56,3 @@ def kb_goodbye():
     return keyboard.as_markup(
         resize_keyboard=True,
     )
-
-

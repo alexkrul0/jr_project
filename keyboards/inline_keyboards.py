@@ -24,7 +24,7 @@ def ikb_celebrity():
                 file_name=celebrity.file_name,
             ),
         )
-    keyboard.adjust(*[1]*len(file_list))
+    keyboard.adjust(*[1] * len(file_list))
     return keyboard.as_markup()
 
 
@@ -44,7 +44,7 @@ def ikb_select_subject_quiz():
                 subject=button[1],
             )
         )
-    keyboard.adjust(*[1]*len(buttons))
+    keyboard.adjust(*[1] * len(buttons))
     return keyboard.as_markup()
 
 

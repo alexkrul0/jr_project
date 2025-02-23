@@ -8,9 +8,7 @@ from aiogram.enums import ChatAction
 
 from keyboards.reply_keyboards import kb_random_facts, kb_start, kb_back
 from fsm.states import CelebrityDialog
-from .command_handlers import com_start
-from classes import ai_client
-from keyboards.callback_data import CelebrityData, QuizData
+from keyboards.callback_data import CelebrityData
 
 callback_router = Router()
 
@@ -25,9 +23,4 @@ async def select_celebrity(callback: CallbackQuery, callback_data: CelebrityData
         photo=photo_file,
         caption=f'Вас приветствует {callback_data.name}!\nЗадайте вопрос:',
         reply_markup=kb_back(),
-        # text=callback.data,
-        # show_alert=True,
     )
-
-
-
