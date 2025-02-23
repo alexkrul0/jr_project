@@ -2,11 +2,6 @@ import os
 import httpx
 import aiofiles
 from openai import AsyncOpenAI
-from enum import Enum
-
-
-# class GPTModel(Enum):
-#     TEXT_GPT = 'gpt-3.5-turbo'
 
 
 class ChatGPT:
@@ -33,16 +28,16 @@ class ChatGPT:
         return ai_client
 
     @staticmethod
-    async def _read_prompt( path: str):
+    async def _read_prompt(path: str):
         async with aiofiles.open(os.path.join('prompts/', path), 'r', encoding='UTF-8') as file:
             prompt = await file.read()
         return prompt
 
     async def text_request(self, messages: list[dict[str, str]], prompt: str):
         message_list = [
-                {'role': 'system',
-                 'content': await self._read_prompt(prompt)},
-            ] + messages
+                           {'role': 'system',
+                            'content': await self._read_prompt(prompt)},
+                       ] + messages
         completion = await self._client.chat.completions.create(
             messages=message_list,
             model='gpt-3.5-turbo',
